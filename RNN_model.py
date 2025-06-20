@@ -1,6 +1,8 @@
-import pandas as np
+import pandas as pd
+import numpy as np
+
 import copy
-from utils import softmax, clip
+from utils import softmax
 
 
 def rnn_cell_forward(xt, a_prev, p):
@@ -96,10 +98,15 @@ def sample(p, char_to_ix, ix_to_char, seed):
     counter = 0
     newline_char = char_to_ix['\n']
 
-    while idx != newline_char and counter < 50:
+    while idx != newline_char and counter < 10:
         a_next = np.tanh(np.dot(p["Waa"], a_prev) + np.dot(p["Wax"], x) + p["ba"])
         z = np.dot(p["Wya"], a_next) + p["by"]
         y = softmax(z)
+
+        # Empêcher le modèle de choisir '^' après le premier caractère
+        if counter > 0:
+            y[char_to_ix['^']] = 0
+            y = y / np.sum(y)  # re-normaliser
 
         np.random.seed(counter + seed)
         idx = np.random.choice(list(range(vocab_size)), p=y.ravel())
@@ -110,5 +117,6 @@ def sample(p, char_to_ix, ix_to_char, seed):
         a_prev = a_next
 
         counter += 1
+
 
     return indices
