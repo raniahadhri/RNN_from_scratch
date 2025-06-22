@@ -1,18 +1,4 @@
 
-## Steps
-
-### Initialize parameters
-
-### Run the optimization loop
-#### Forward propagation to compute the loss function
-#### Backward propagation to compute the gradients with respect to the loss function
-#### Clip the gradients to avoid exploding gradients
-#### Using the gradients, update your parameters with the gradient descent update rule.
-
-### Return the learned parameters
-
-
-
 # RNN_from_scratch (for Chemical Compound Name Generation)
 ![Alt text describing the image](images/1_QfHHiQuifJ-W9vQblQCj0Q.png)
 
