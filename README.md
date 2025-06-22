@@ -88,3 +88,9 @@ rasic
 * Cross-entropy loss is computed at each time step
 * Training is done via gradient descent with gradient clipping for stability
 
+
+## Contributions
+Contributions are welcome! Ideas include adding LSTM/GRU cells, improving the dataset, or creating a user interface.
+
+## Contact
+For questions or feedback, contact me at [rania.hadhri@esprit.tn].
